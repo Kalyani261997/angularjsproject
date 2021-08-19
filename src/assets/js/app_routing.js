@@ -1,0 +1,43 @@
+app.config(function(){
+    $locationProvider.html5Mode(true);
+    $stateProvider.state({
+        name:"dashboard",
+        url:"/",
+        controller:"base_controller",
+        templateUrl:"static/dashboard.html",
+        resolve:{
+            deps:["$ocLazyLoad",function(){
+                return $ocLazyLoad.load([
+                    {
+                        name:"ui.select",
+                        serie:true,
+                        files:[
+                            "assets/vendors/bower_components/jquery/dist/jquery.min.js",
+                            "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" 
+                        ]
+                    }
+                ])
+            }]
+        }
+    });
+    $stateProvider.state({
+        name:"archieved",
+        url:"/",
+        controller:"base_controller",
+        templateUrl:"static/archieved.html",
+        resolve:{
+            deps:["$ocLazyLoad",function(){
+                return $ocLazyLoad.load([
+                    {
+                        name:"ui.select",
+                        serie:true,
+                        files:[
+                            "assets/vendors/bower_components/jquery/dist/jquery.min.js",
+                            "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"
+                        ]
+                    }
+                ])
+            }]
+        }
+    });
+})
