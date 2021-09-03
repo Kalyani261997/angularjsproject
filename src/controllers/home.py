@@ -13,7 +13,7 @@ def home():
 
 
 
-@app.route("/assets",defaults={"path":'',})
+@app.route("/assets",defaults={"path":''})
 @app.route("/assets/<path:path>")
 @cross_origin()
 def asset_handler(path):
@@ -22,7 +22,7 @@ def asset_handler(path):
     except Exception as e:
         return make_response({"error":str(e)},500)
 
-@app.route("/",defaults={"path":'',})
+@app.route("/",defaults={"path":''})
 @app.route("/<path:path>")
 @cross_origin()
 def file_handler(path):

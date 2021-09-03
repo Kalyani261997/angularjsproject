@@ -1,4 +1,4 @@
-app.config(function(){
+app.config(function($stateProvider,$locationProvider){
     $locationProvider.html5Mode(true);
     $stateProvider.state({
         name:"dashboard",
@@ -6,7 +6,7 @@ app.config(function(){
         controller:"base_controller",
         templateUrl:"static/dashboard.html",
         resolve:{
-            deps:["$ocLazyLoad",function(){
+            deps:["$ocLazyLoad",function($ocLazyLoad){
                 return $ocLazyLoad.load([
                     {
                         name:"ui.select",
@@ -21,12 +21,12 @@ app.config(function(){
         }
     });
     $stateProvider.state({
-        name:"archieved",
-        url:"/",
+        name:"archieve",
+        url:"/archieve",
         controller:"base_controller",
-        templateUrl:"static/archieved.html",
+        templateUrl:"static/archieve.html",
         resolve:{
-            deps:["$ocLazyLoad",function(){
+            deps:["$ocLazyLoad",function($ocLazyLoad){
                 return $ocLazyLoad.load([
                     {
                         name:"ui.select",
@@ -34,6 +34,46 @@ app.config(function(){
                         files:[
                             "assets/vendors/bower_components/jquery/dist/jquery.min.js",
                             "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"
+                        ]
+                    }
+                ])
+            }]
+        }
+    });
+    $stateProvider.state({
+        name:"trash",
+        url:"/trash",
+        controller:"base_controller",
+        templateUrl:"static/trash.html",
+        resolve:{
+            deps:["$ocLazyLoad",function($ocLazyLoad){
+                return $ocLazyLoad.load([
+                    {
+                        name:"ui.select",
+                        serie:true,
+                        files:[
+                            "assets/vendors/bower_components/jquery/dist/jquery.min.js",
+                            "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" 
+                        ]
+                    }
+                ])
+            }]
+        }
+    });
+    $stateProvider.state({
+        name:"profile",
+        url:"/profile",
+        controller:"base_controller",
+        templateUrl:"static/profile.html",
+        resolve:{
+            deps:["$ocLazyLoad",function($ocLazyLoad){
+                return $ocLazyLoad.load([
+                    {
+                        name:"ui.select",
+                        serie:true,
+                        files:[
+                            "assets/vendors/bower_components/jquery/dist/jquery.min.js",
+                            "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js" 
                         ]
                     }
                 ])

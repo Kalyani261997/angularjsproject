@@ -1405,7 +1405,7 @@ body {
   font-family: noto-sans;
   font-size: 13px;
   line-height: 1.42857143;
-  color: #5e5e5e;
+  color: ;
   background-color: #edecec;
 }
 
@@ -4834,7 +4834,7 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #5e5e5e;
+  color: #334c80;
   white-space: nowrap;
 }
 
@@ -5965,7 +5965,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #334c80;
   background-color: transparent;
 }
 
@@ -6410,7 +6410,7 @@ a.label:focus {
 
 .label-default[href]:hover,
 .label-default[href]:focus {
-  background-color: #5e5e5e;
+  background-color: #334c80;
 }
 
 .label-primary {
@@ -6592,7 +6592,7 @@ a.thumbnail.active {
 
 .thumbnail .caption {
   padding: 9px;
-  color: #5e5e5e;
+  color: #334c80;
 }
 
 .alert {
@@ -10226,11 +10226,11 @@ pre {
 
 .focused .hs-input {
   background-color: #fff;
-  color: #5e5e5e;
+  color: #334c80;
 }
 
 .focused .hs-input + .hs-reset {
-  color: #5e5e5e;
+  color: #334c80;
 }
 
 .focused .hs-input + .hs-reset:before {
@@ -10288,7 +10288,7 @@ pre {
   -ms-transform: scale(0) rotate(-180deg);
   -o-transform: scale(0) rotate(-180deg);
   transform: scale(0) rotate(-180deg);
-  color: #5e5e5e;
+  color: #334c80;
 }
 
 @media (min-width: 992px) {

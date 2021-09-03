@@ -222,21 +222,20 @@
         </ul>
 
         <ul class="main-menu">
-            <li class="active">
+            <li>
                 <a href="/"><i class="zmdi zmdi-home"></i> Home</a>
             </li>
             <li>
-                <a href="" data-toggle="modal" data-target="#exampleModal"><i class="zmdi zmdi-collection-add"></i> Add
-                    Task</a>
+                <a href="" data-toggle="modal" data-target="#exampleModal"><i class="zmdi zmdi-collection-add"></i> Add Task</a>
+            </li>
+            <li class="active">
+                <a href="/archieve"><i class="zmdi zmdi-archive"></i> Archived</a>
             </li>
             <li>
-                <a href="/archieve"><i class="zmdi zmdi-archive"></i> Archieved</a>
+                <a href="/"><i class="zmdi zmdi-delete zmd-fw"></i> Trash</a>
             </li>
             <li>
-                <a href="/trash"><i class="zmdi zmdi-delete zmd-fw"></i> Trash</a>
-            </li>
-            <li>
-                <a href="/profile"><i class="zmdi zmdi-face zmd-fw"></i>Profile</a>
+                <a href="/"><i class="zmdi zmdi-face zmd-fw"></i>Profile</a>
             </li>
         </ul>
     </aside>
@@ -245,59 +244,64 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12">
-                    <div ng-repeat="list in showlist" class="col-lg-4 col-xl-4">
-                        <div class="card">
-                            <div class="card-header ch-img"
-                                style="background-image: url(assets/img/demo/note.png); height: 250px;"></div>
-                            <div class="card-header">
-                                <h2>
-                                    {{list.created_by}}
-                                </h2>
-                            </div>
-                            <div class="card-body card-padding">
-                                <p>{{list.data}}</p>
+                    <!-- <div id="c-grid" class="clearfix row" data-columns> -->
+                        <div ng-repeat="list in archievelist" class="col-lg-4 col-xl-4">
+                            <div class="card">
+                                <div class="card-header ch-img"
+                                    style="background-image: url(assets/img/demo/note.png); height: 250px;"></div>
+                                <div class="card-header">
+                                    <h2>
+                                        {{list.created_by}}
+                                    </h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <p>{{list.data}}</p>
 
-                                <a href="" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View
-                                    Article...</a>
+                                    <a href="" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View Article...</a>
+                                </div>
+                            </div>
+                                <div class="card-header ch-img"
+                                    style="background-image: url(assets/img/demo/note.png); height: 250px;"></div>
+                                <div class="card-header">
+                                    <h2>
+                                        {{list.created_by}}
+                                    </h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <p>{{list.data}}</p>
+
+                                    <a href="" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View Article...</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
     </section>
     <!-- Code for modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form ng-submit="add_task()" role="form">
-                        <div class="form-group fg-line">
-                            <input name="title" ng-model="task.title" type="text" class="form-control input-sm"
-                                placeholder="Enter title">
-                        </div>
-                        <div class="form-group fg-line">
-                            <textarea name="data" ng-model="task.data" type="text" class="form-control input-sm"
-                                placeholder="Enter data"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Submit</button>
-
-                    </form>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
     </div>
     <!-- end Code for modal -->
 </section>
-<script type="text/javascript-lazy" src="assets/vendors/bower_components/Waves/dist/waves.min.js"></script>
-<script type="text/javascript-lazy" src="assets/js/functions.js"></script>
-<script type="text/javascript-lazy" src="assets/js/actions.js"></script>
-<script type="text/javascript-lazy" src="assets/js/demo.js"></script>
+<script type = "text/javascript-lazy" src="assets/vendors/bower_components/Waves/dist/waves.min.js"></script>
+<script type = "text/javascript-lazy" src="assets/js/functions.js"></script>
+<script type = "text/javascript-lazy" src="assets/js/actions.js"></script>
+<script type = "text/javascript-lazy" src="assets/js/demo.js"></script>
