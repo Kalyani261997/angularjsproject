@@ -28,25 +28,35 @@ var app = angular.module("keepnotes",["ui.router","ngLoadScript","oc.lazyLoad"])
 app.controller("base_controller",function($scope,$state,$http,$httpParamSerializer){
     console.log($state.current.name);
     var state = $state.current.name;
+    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiW3tcImNyZWF0ZWRfb25cIjogXCIyMDIxLTA3LTI5IDEzOjM2OjA0LjQxMTQ0MVwiLCBcImVtYWlsXCI6IFwia2FseWFuaWJoYWxla2FyQGdtYWlsLmNvbVwiLCBcImZ1bGxfbmFtZVwiOiBcImJoYWxla2FyXCIsIFwiaWRcIjogMiwgXCJwYXNzd29yZFwiOiBcIjEyMzMyMVwiLCBcInBob25lXCI6IFwiOTc2ODM2MDkwNVwiLCBcInN0YXR1c1wiOiBcImFcIn1dIiwiZXhwIjoxNjM5NzMxMzQyfQ.uD6To9TagFdxGLOaQSiNcYL0yGYYMiIhRrhMq2Ry5TU";
+    var host = "http://localhost:5155";
 
-    $scope.task={
-        created_by:1,
+    $scope.list={
+    
     }
-    $scope.add_task=function(){
+    $scope.add_list=function(){
+        console.log($scope.list);
         $http({
-            url:"http://localhost:5153/add_task",
-            method:"POST",
-            data:$httpParamSerializer($scope.task),
+            url: host+"/add_task_list",
+            method: "POST",
+            data: $httpParamSerializer($scope.list),
+            headers : {
+                "Authorization" : "Bearer "+token,
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
             success:function(res){
-                console.log(res);
+                location.reload();
             }
         });
     }
     $scope.states={
         dashboard:function(){
             $http({
-                url:"http://localhost:5153/show_list",
-                method:"GET"
+                url: host+"/show_list",
+                method:"GET",
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                },
             }).then(function(res){
                 console.log(res.data.data);
                 $scope.showlist = res.data.data;
@@ -54,10 +64,16 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
                 console.log(error);
             });
         },
+        add_list:function(){
+
+        },
         archieve:function(){
             $http({
-                url:"http://localhost:5153/archieve_list",
-                method:"GET"
+                url: host+"/archieve_list",
+                method:"GET",
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                },
             }).then(function(res){
                 console.log(res.data.data);
                 $scope.archievelist = res.data.data;
@@ -67,8 +83,11 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
         },
         trash:function(){
             $http({
-                url:"http://localhost:5153/trash_list",
-                method:"GET"
+                url: host+"/trash_list",
+                method:"GET",
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                },
             }).then(function(res){
                 console.log(res.data.data);
                 $scope.trashlist = res.data.data;
@@ -78,11 +97,14 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
         },
         profile:function(){
             $http({
-                url:"http://localhost:5153/users/get_single_user_details/1",
-                method:"GET"
+                url: host+"/users/get_single_user_details/1",
+                method:"GET",
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                },
             }).then(function(res){
                 console.log(res.data.data);
-            },function(error){
+                $scope.profile=res.data.data[0];
                 console.log(error);
             });
         },
