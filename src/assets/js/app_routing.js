@@ -41,6 +41,26 @@ app.config(function($stateProvider,$locationProvider){
         }
     });
     $stateProvider.state({
+        name:"task",
+        url:"/task",
+        controller:"base_controller",
+        templateUrl:"static/task.html",
+        resolve:{
+            deps:["$ocLazyLoad",function($ocLazyLoad){
+                return $ocLazyLoad.load([
+                    {
+                        name:"ui.select",
+                        serie:true,
+                        files:[
+                            "assets/vendors/bower_components/jquery/dist/jquery.min.js",
+                            "assets/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"
+                        ]
+                    }
+                ])
+            }]
+        }
+    });
+    $stateProvider.state({
         name:"archieve",
         url:"/archieve",
         controller:"base_controller",

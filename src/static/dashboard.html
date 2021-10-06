@@ -40,14 +40,12 @@
                                 style="background-image: url(assets/img/demo/note.png); height: 250px;"></div>
                             <div class="card-header">
                                 <h2>
-                                    {{list.created_by}}
+                                    {{list.title}}
                                 </h2>
                             </div>
                             <div class="card-body card-padding">
-                                <p>{{list.data}}</p>
-
-                                <a href="" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View
-                                    Article...</a>
+                                <a href="/task?lid={{list.id}}" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View
+                                    Task...</a>
                             </div>
                         </div>
                     </div>
@@ -55,37 +53,6 @@
             </div>
         </div>
     </section>
-    <!-- Code for modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <form ng-submit="add_task()" role="form">
-                        <div class="form-group fg-line">
-                            <!-- <input type="hidden" name="created_by" ng-model="1"> -->
-                            <input name="title" ng-model="task.title" type="text" class="form-control input-sm"
-                                placeholder="Enter title">
-                        </div>
-                        <div class="form-group fg-line">
-                            <textarea name="data" ng-model="task.data" type="text" class="form-control input-sm"
-                                placeholder="Enter data"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm m-t-10">Submit</button>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end Code for modal -->
 </section>
 <script type="text/javascript-lazy" src="assets/vendors/bower_components/Waves/dist/waves.min.js"></script>
 <script type="text/javascript-lazy" src="assets/js/functions.js"></script>

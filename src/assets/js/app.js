@@ -28,8 +28,9 @@ var app = angular.module("keepnotes",["ui.router","ngLoadScript","oc.lazyLoad"])
 app.controller("base_controller",function($scope,$state,$http,$httpParamSerializer){
     console.log($state.current.name);
     var state = $state.current.name;
-    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiW3tcImNyZWF0ZWRfb25cIjogXCIyMDIxLTA3LTI5IDEzOjM2OjA0LjQxMTQ0MVwiLCBcImVtYWlsXCI6IFwia2FseWFuaWJoYWxla2FyQGdtYWlsLmNvbVwiLCBcImZ1bGxfbmFtZVwiOiBcImJoYWxla2FyXCIsIFwiaWRcIjogMiwgXCJwYXNzd29yZFwiOiBcIjEyMzMyMVwiLCBcInBob25lXCI6IFwiOTc2ODM2MDkwNVwiLCBcInN0YXR1c1wiOiBcImFcIn1dIiwiZXhwIjoxNjM5NzMxMzQyfQ.uD6To9TagFdxGLOaQSiNcYL0yGYYMiIhRrhMq2Ry5TU";
+    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MTk3MDk2NH0.lufTGkbHjsoytGhQzqb-u1BnoSjzPfBOpMYaSvd56sA"
     var host = "http://localhost:5155";
+
 
     $scope.list={
     
@@ -49,6 +50,26 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             }
         });
     }
+    $scope.task = {
+
+    }
+    $scope.add_task=function(task){
+        $http({
+            url: host+"/task/add_task/"+$scope.list_id,
+            method: "POST",
+            data : $httpParamSerializer($scope.task),
+            headers : { 
+                "Authorization" : "Bearer "+token,
+                "Content_type": "application/x-www-form-urlencoded"
+            },
+            success:function(res){
+                location.reload();
+            }
+        });
+    }
+    var params = new URLSearchParams(window.location.search);
+    $scope.list_id = params.get("lid");
+
     $scope.states={
         dashboard:function(){
             $http({
@@ -64,7 +85,24 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
                 console.log(error);
             });
         },
+        task:function(){
+            $http({
+                url: host+"/task/read_task/"+$scope.list_id,
+                method:"GET",
+                headers : {
+                    "Authorization" : "Bearer "+token,
+                },
+            }).then(function(res){
+                console.log(res);
+                $scope.task = res.data.data;
+            },function(error){
+                console.log(error);
+            });
+        },
         add_list:function(){
+
+        },
+        add_task:function(){
 
         },
         archieve:function(){
