@@ -28,7 +28,7 @@ var app = angular.module("keepnotes",["ui.router","ngLoadScript","oc.lazyLoad"])
 app.controller("base_controller",function($scope,$state,$http,$httpParamSerializer){
     console.log($state.current.name);
     var state = $state.current.name;
-    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MTk3MDk2NH0.lufTGkbHjsoytGhQzqb-u1BnoSjzPfBOpMYaSvd56sA"
+    var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MjIyOTcxMH0.f2sZJYCERByYLsLo7RbK9syujvLfST0_RTClkOX6ZIw"
     var host = "http://localhost:5155";
 
 
@@ -50,14 +50,18 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             }
         });
     }
-    $scope.task = {
+    var params = new URLSearchParams(window.location.search);
+    $scope.list_id = params.get("lid");
 
+    $scope.a_task = {
+        "abc":"cba"
     }
     $scope.add_task=function(task){
+        console.log($scope.a_task);
         $http({
             url: host+"/task/add_task/"+$scope.list_id,
             method: "POST",
-            data : $httpParamSerializer($scope.task),
+            data : $httpParamSerializer($scope.a_task),
             headers : { 
                 "Authorization" : "Bearer "+token,
                 "Content_type": "application/x-www-form-urlencoded"
@@ -67,8 +71,7 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             }
         });
     }
-    var params = new URLSearchParams(window.location.search);
-    $scope.list_id = params.get("lid");
+    
 
     $scope.states={
         dashboard:function(){
@@ -93,7 +96,7 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
                     "Authorization" : "Bearer "+token,
                 },
             }).then(function(res){
-                console.log(res);
+                // console.log(res);
                 $scope.task = res.data.data;
             },function(error){
                 console.log(error);
