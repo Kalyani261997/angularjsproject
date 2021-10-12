@@ -44,32 +44,42 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             headers : {
                 "Authorization" : "Bearer "+token,
                 "Content-Type": "application/x-www-form-urlencoded"
-            },
-            success:function(res){
-                location.reload();
             }
-        });
+        }).then(function(res){
+            console.log(res);
+            swal("Good Job!","List Added!!","success")
+            .then(function(){
+                location.reload();
+            });
+        },function(error){
+            console.log(error);
+        })
     }
     var params = new URLSearchParams(window.location.search);
     $scope.list_id = params.get("lid");
 
-    $scope.a_task = {
-        "abc":"cba"
+    $scope.task_add = {
+
     }
-    $scope.add_task=function(task){
-        console.log($scope.a_task);
+    $scope.add_task=function(){
+        console.log($scope.task);
         $http({
             url: host+"/task/add_task/"+$scope.list_id,
             method: "POST",
-            data : $httpParamSerializer($scope.a_task),
+            data : $httpParamSerializer($scope.task_add),
             headers : { 
                 "Authorization" : "Bearer "+token,
                 "Content_type": "application/x-www-form-urlencoded"
-            },
-            success:function(res){
-                location.reload();
             }
-        });
+        }).then(function(res){
+            console.log(res);
+            swal("Good Job!","Task Added!!","success")
+            .then(function(){
+                location.reload();
+            });
+        },function(error){
+            console.log(error);
+        })
     }
     
 
@@ -103,9 +113,6 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             });
         },
         add_list:function(){
-
-        },
-        add_task:function(){
 
         },
         archieve:function(){
