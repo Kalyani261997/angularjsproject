@@ -31,6 +31,9 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
     var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MjIyOTcxMH0.f2sZJYCERByYLsLo7RbK9syujvLfST0_RTClkOX6ZIw"
     var host = "http://localhost:5155";
 
+    var params = new URLSearchParams(window.location.search);
+    $scope.list_id = params.get("lid");
+
 
     $scope.list={
     
@@ -55,8 +58,7 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             console.log(error);
         })
     }
-    var params = new URLSearchParams(window.location.search);
-    $scope.list_id = params.get("lid");
+
 
     $scope.task_add = {
 
@@ -69,7 +71,7 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             data : $httpParamSerializer($scope.task_add),
             headers : { 
                 "Authorization" : "Bearer "+token,
-                "Content_type": "application/x-www-form-urlencoded"
+                "Content-type": "application/x-www-form-urlencoded"
             }
         }).then(function(res){
             console.log(res);
