@@ -31,3 +31,10 @@ def file_handler(path):
     except Exception as e:
         return make_response({"error":str(e)},500)
 
+@app.route("/login")
+def login():
+    try:
+        return send_file(app.root_path+"/static/login.html")
+    except Exception as e:
+        return make_response({"error":str(e)},500)
+

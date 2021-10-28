@@ -64,7 +64,7 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
 
     }
     $scope.add_task=function(){
-        console.log($scope.task);
+        console.log($scope.task_add);
         $http({
             url: host+"/task/add_task/"+$scope.list_id,
             method: "POST",
@@ -83,7 +83,42 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
             console.log(error);
         })
     }
-    
+    $scope.is_disabled = true;
+    $scope.edit = false;
+    $scope.update = true;
+
+    $scope.toggleReadonly = function(action){
+        if (action == "enable"){
+            $scope.is_disabled = false;
+            $scope.edit = true;
+            $scope.update = false;
+        }
+        else{
+            $scope.is_disabled = true;
+            $scope.edit = false;
+            $scope.update = true;
+        }
+    }
+    $scope.edit_profile = function(){
+        console.log($scope.profile);
+        $http({
+            url: host+"/update_user",
+            method: "POST",
+            data: $httpParamSerializer($scope.profile),
+            headers : {
+                "Authorization" : "Bearer "+token,
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(res){
+            console.log(res);
+            swal("Great!","Profile Updated!!","success")
+            .then(function(){
+                location.reload();
+            });
+        },function(error){
+            console.log(error);
+        })
+    }
 
     $scope.states={
         dashboard:function(){
@@ -147,13 +182,13 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
         },
         profile:function(){
             $http({
-                url: host+"/users/get_single_user_details/1",
+                url: host+"/read_single_user",
                 method:"GET",
                 headers : {
                     "Authorization" : "Bearer "+token,
                 },
             }).then(function(res){
-                console.log(res.data.data);
+                console.log(res.data.data[0]);
                 $scope.profile=res.data.data[0];
                 console.log(error);
             });
@@ -161,3 +196,24 @@ app.controller("base_controller",function($scope,$state,$http,$httpParamSerializ
     }
     $scope.states[state]();
 })
+app.controller("login_ctrl",function($scope,$state,$http,$httpParamSerializer){
+    var host = "http://localhost:5155";
+    var token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MjIyOTcxMH0.f2sZJYCERByYLsLo7RbK9syujvLfST0_RTClkOX6ZIw"
+
+    $scope.login = function(){
+        $http({
+            url = host+"/login",
+            method = "POST",
+            data = $httpParamSerializer($scope.list),
+            headers = {
+                "Authorization" : "Bearer "+token,
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(res){
+            console.log(res)
+            // localStorage.setItem("token", res)
+        },function(error){
+            console.log(error)
+        })
+    }
+})  

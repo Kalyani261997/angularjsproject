@@ -25,7 +25,7 @@
                 <a href="/trash"><i class="zmdi zmdi-delete zmd-fw"></i> Trash</a>
             </li>
             <li>
-                <a href="/profile"><i class="zmdi zmdi-face zmd-fw"></i>Profile</a>
+                <a href="/profile"><i class="zmdi zmdi-account zmdi-hc-fw"></i>Profile</a>
             </li>
         </ul>
     </aside>
@@ -39,9 +39,18 @@
                             <div class="card-header ch-img"
                                 style="background-image: url(assets/img/demo/note.png); height: 250px;"></div>
                             <div class="card-header">
-                                <h2>
-                                    {{list.title}}
-                                </h2>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="col-8"><h2>
+                                            {{list.title}}
+                                        </h2></div>
+                                        <div class="col-4">
+                                            <button class="btn btn-success waves-effect"><i class="zmdi zmdi-more-vert"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
                             </div>
                             <div class="card-body card-padding">
                                 <a href="/task?lid={{list.id}}" class="view-more"><i class="zmdi zmdi-long-arrow-right"></i> View
