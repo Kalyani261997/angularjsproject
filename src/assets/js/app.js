@@ -200,20 +200,23 @@ app.controller("login_ctrl",function($scope,$state,$http,$httpParamSerializer){
     var host = "http://localhost:5155";
     var token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjpbeyJjcmVhdGVkX29uIjoiMjAyMS0wNy0yOSAxMzozNjowNC40MTE0NDEiLCJlbWFpbCI6ImthbHlhbmliaGFsZWthckBnbWFpbC5jb20iLCJmdWxsX25hbWUiOiJiaGFsZWthciIsImlkIjoyLCJwYXNzd29yZCI6IjEyMzMyMSIsInBob25lIjoiOTc2ODM2MDkwNSIsInN0YXR1cyI6ImEifV0sImV4cCI6MTY0MjIyOTcxMH0.f2sZJYCERByYLsLo7RbK9syujvLfST0_RTClkOX6ZIw"
 
+    $scope.log_in = {
+        
+    }
     $scope.login = function(){
         $http({
             url = host+"/login",
             method = "POST",
-            data = $httpParamSerializer($scope.list),
+            data = $httpParamSerializer($scope.log_in),
             headers = {
                 "Authorization" : "Bearer "+token,
                 "Content-Type": "application/x-www-form-urlencoded"
             }
         }).then(function(res){
-            console.log(res)
+            console.log(res);
             // localStorage.setItem("token", res)
         },function(error){
-            console.log(error)
+            console.log(error);
         })
     }
 })  
